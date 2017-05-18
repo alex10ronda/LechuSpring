@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lechuspring.service.ClienteService;
 import com.lechuspring.service.EstadoService;
+import com.lechuspring.service.PedidoService;
 
 @Controller
 public class LoginController {
@@ -14,12 +15,12 @@ public class LoginController {
 	private ClienteService clienteService;
 	
 	@Autowired
-	private EstadoService estadoService;
+	private PedidoService pedidoService;
 	
 	@RequestMapping(value="/")
 	public String onLoad(){
 		
-	
+		pedidoService.guardarPedido();
 	
 		return "index";
 	}

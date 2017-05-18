@@ -1,14 +1,18 @@
 package com.lechuspring.entities;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.metamodel.source.annotations.attribute.type.LobTypeResolver;
 
 @Entity
 @Table(name="producto")
@@ -36,6 +40,9 @@ public class Producto {
 	
 	@Column(name="TP_PRODUCTO")
 	private String tpProducto;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="pk.producto", cascade=CascadeType.ALL)
+	private Set<ProductoPedido> listaProductos = new HashSet<ProductoPedido>();
 
 	public int getId() {
 		return Id;
@@ -91,6 +98,14 @@ public class Producto {
 
 	public void setTpProducto(String tpProducto) {
 		this.tpProducto = tpProducto;
+	}
+
+	public Set<ProductoPedido> getListProductosPed() {
+		return listaProductos;
+	}
+
+	public void setListProductosPed(Set<ProductoPedido> listProductosPed) {
+		this.listaProductos = listProductosPed;
 	}
 	
 	
