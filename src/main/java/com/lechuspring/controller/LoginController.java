@@ -20,7 +20,7 @@ public class LoginController {
 	@RequestMapping(value="/")
 	public String onLoad(){
 		
-		pedidoService.guardarPedido();
+		//pedidoService.guardarPedido();
 	
 		return "index";
 	}

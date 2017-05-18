@@ -14,6 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 @Entity
 @Table(name="producto")
 public class Producto {
@@ -41,6 +45,8 @@ public class Producto {
 	@Column(name="TP_PRODUCTO")
 	private String tpProducto;
 	
+	
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pk.producto", cascade=CascadeType.ALL)
 	private Set<ProductoPedido> listaProductos = new HashSet<ProductoPedido>();
 
@@ -100,6 +106,7 @@ public class Producto {
 		this.tpProducto = tpProducto;
 	}
 
+	@JsonIgnore
 	public Set<ProductoPedido> getListProductosPed() {
 		return listaProductos;
 	}

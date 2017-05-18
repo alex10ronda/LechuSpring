@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="pedido")
 public class Pedido {
@@ -43,6 +45,7 @@ public class Pedido {
 	@JoinTable(name = "composicion_pedido", joinColumns = {
 		@JoinColumn(name="ID_PEDIDO")}, inverseJoinColumns={ @JoinColumn(name ="ID_PRODUCTO")})*/
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="pk.pedido", cascade=CascadeType.ALL)
 	private Set<ProductoPedido> listaProductos = new HashSet<ProductoPedido>();
 
@@ -78,6 +81,7 @@ public class Pedido {
 		this.importe = importe;
 	}
 
+	@JsonIgnore
 	public Set<ProductoPedido> getListaProductos() {
 		return listaProductos;
 	}
