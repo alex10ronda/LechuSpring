@@ -7,4 +7,6 @@ import com.lechuspring.entities.Producto;
 public interface ProductoDAO {
 
 	public List<Producto> findAll();
+	
+	public List<Producto> findAllComida();
 }

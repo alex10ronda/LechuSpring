@@ -16,8 +16,13 @@ public class ProductoDAOImpl implements ProductoDAO{
 	private SessionFactory sessionFactory;
 	
 	public List<Producto> findAll() {
-		
 		return this.sessionFactory.getCurrentSession().createCriteria(Producto.class).list();
+	}
+
+	public List<Producto> findAllComida() {
+		
+		String hql = "FROM Producto p WHERE p.tpProducto = 'Comida'";
+		return this.sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
 }

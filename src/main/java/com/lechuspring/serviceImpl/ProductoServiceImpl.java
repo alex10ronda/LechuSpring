@@ -23,4 +23,9 @@ public class ProductoServiceImpl implements ProductoService {
 		return productoDAO.findAll();
 	}
 
+	public List<Producto> getAllFood() {
+		
+		return productoDAO.findAllComida();
+	}
+
 }
