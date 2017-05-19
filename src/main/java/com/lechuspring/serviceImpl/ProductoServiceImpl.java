@@ -19,13 +19,15 @@ public class ProductoServiceImpl implements ProductoService {
 	private ProductoDAO productoDAO;
 	
 	public List<Producto> getAllProducts() {
-		
 		return productoDAO.findAll();
 	}
 
 	public List<Producto> getAllFood() {
-		
 		return productoDAO.findAllComida();
+	}
+
+	public List<Producto> getAllDrinks() {
+		return productoDAO.findAllBebida();
 	}
 
 }

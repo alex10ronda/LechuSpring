@@ -9,4 +9,6 @@ public interface ProductoDAO {
 	public List<Producto> findAll();
 	
 	public List<Producto> findAllComida();
+	
+	public List<Producto> findAllBebida();
 }

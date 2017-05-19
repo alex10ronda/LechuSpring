@@ -20,8 +20,12 @@ public class ProductoDAOImpl implements ProductoDAO{
 	}
 
 	public List<Producto> findAllComida() {
-		
 		String hql = "FROM Producto p WHERE p.tpProducto = 'Comida'";
+		return this.sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
+
+	public List<Producto> findAllBebida() {
+		String hql = "FROM Producto p WHERE p.tpProducto = 'Bebida'";
 		return this.sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 

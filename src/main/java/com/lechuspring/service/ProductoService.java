@@ -9,4 +9,6 @@ public interface ProductoService {
 	public List<Producto> getAllProducts();
 	
 	public List<Producto> getAllFood();
+	
+	public List<Producto> getAllDrinks();
 }

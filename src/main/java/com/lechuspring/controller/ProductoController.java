@@ -26,5 +26,10 @@ public class ProductoController {
 	public @ResponseBody List<Producto> getAllFood(){
 		return productoService.getAllFood();
 	}
+	
+	@RequestMapping(value="/findAllDrink")
+	public @ResponseBody List<Producto> getAllDrink(){
+		return productoService.getAllDrinks();
+	}
 
 }
