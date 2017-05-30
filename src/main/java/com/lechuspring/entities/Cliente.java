@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="cliente")
 public class Cliente {
@@ -57,6 +59,7 @@ public class Cliente {
 		return importeTotal;
 	}
 
+	@JsonIgnore
 	public void setImporteTotal(Double importeTotal) {
 		this.importeTotal = importeTotal;
 	}
@@ -65,6 +68,7 @@ public class Cliente {
 		return lugar;
 	}
 
+	@JsonIgnore
 	public void setLugar(Lugar lugar) {
 		this.lugar = lugar;
 	}

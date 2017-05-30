@@ -17,20 +17,12 @@ public class ClienteServiceImpl implements ClienteService{
 	@Autowired
 	private ClienteDAO clienteDAO;
 	
-	public void guardarCliente() {
+	public void guardarCliente(Cliente cliente) throws Exception {
 		
-		Cliente cliente = new Cliente();
-		cliente.setNombre("Alejandro");
-		cliente.setApellido("Ruiz");
-		cliente.setImporteTotal(0.0);
-		cliente.setId("A1");
-		
-		Lugar lugar = new Lugar();
-		lugar.setNombre("Agua-Aire");
-		
-		cliente.setLugar(lugar);
 		
 		clienteDAO.save(cliente);
+		
+		
 		
 	}
 

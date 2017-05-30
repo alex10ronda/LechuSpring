@@ -4,5 +4,5 @@ import com.lechuspring.entities.Cliente;
 
 public interface ClienteDAO {
 	
-	public void save(Cliente cliente);
+	public void save(Cliente cliente) throws Exception;
 }

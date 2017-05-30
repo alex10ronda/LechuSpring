@@ -13,9 +13,14 @@ public class ClienteDAOImpl implements ClienteDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public void save(Cliente cliente) {
-	
-		this.sessionFactory.getCurrentSession().saveOrUpdate(cliente);
+	public void save(Cliente cliente) throws Exception {
+		
+		try{
+			this.sessionFactory.getCurrentSession().saveOrUpdate(cliente);
+		} catch(Exception e){
+			throw e;
+		}
+		
 	}
 
 }
