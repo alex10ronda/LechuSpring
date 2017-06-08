@@ -23,4 +23,11 @@ public class ClienteDAOImpl implements ClienteDAO{
 		
 	}
 
+	
+	public Cliente findClienteById(String id) throws Exception {
+		
+		return (Cliente) this.sessionFactory.getCurrentSession().get(Cliente.class, id);
+		
+	}
+
 }

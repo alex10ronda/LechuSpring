@@ -75,5 +75,10 @@ public class PedidoServiceImpl implements PedidoService{
 		this.pedidoDAO.save(pedido);
 		
 	}
+	
+	public List<Pedido> getAll(){
+		return this.pedidoDAO.getAllPedido();
+		
+	}
 
 }

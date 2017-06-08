@@ -28,17 +28,17 @@ public class ClienteController {
 		JSONObject response = new JSONObject();
 		
 		try {
-			clienteService.guardarCliente(cliente);
-			response.append("isOK", true);
-			return response.toString();
+			response = clienteService.guardarCliente(cliente);
 		} catch (Exception e) {
 			try {
-				response.append("isOK", false);
+				response.put("isOK", false);
 			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
-			return response.toString();
+			e.printStackTrace();
 		}
+		
+		return response.toString();
 	}
 }

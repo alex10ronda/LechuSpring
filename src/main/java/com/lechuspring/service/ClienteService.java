@@ -1,8 +1,10 @@
 package com.lechuspring.service;
 
+import org.json.JSONObject;
+
 import com.lechuspring.entities.Cliente;
 
 public interface ClienteService {
 
-	public void guardarCliente(Cliente cliente) throws Exception;
+	public JSONObject guardarCliente(Cliente cliente) throws Exception;
 }

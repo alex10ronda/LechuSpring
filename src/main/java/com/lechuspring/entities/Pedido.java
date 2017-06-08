@@ -41,9 +41,7 @@ public class Pedido {
 	@Column(name="IMPORTE")
 	private Double importe;
 	
-	/*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "composicion_pedido", joinColumns = {
-		@JoinColumn(name="ID_PEDIDO")}, inverseJoinColumns={ @JoinColumn(name ="ID_PRODUCTO")})*/
+	
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="pk.pedido", cascade=CascadeType.ALL)

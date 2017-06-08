@@ -2,6 +2,7 @@ package com.lechuspring.serviceImpl;
 
 import javax.transaction.Transactional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,23 @@ public class ClienteServiceImpl implements ClienteService{
 	@Autowired
 	private ClienteDAO clienteDAO;
 	
-	public void guardarCliente(Cliente cliente) throws Exception {
+	public JSONObject guardarCliente(Cliente cliente) throws Exception {
 		
+		JSONObject response = new JSONObject();
 		
-		clienteDAO.save(cliente);
+		Cliente clienteFound = clienteDAO.findClienteById(cliente.getId());
+		if(clienteFound == null){
+			cliente.setImporteTotal(0.0);
+			clienteDAO.save(cliente);
+			response.put("isOK", true);
+			response.put("total", 0.0);
+			
+		}else{
+			response.put("isOK", true);
+			response.put("total", clienteFound.getImporteTotal());
+		}
 		
-		
-		
+		return response;
 	}
 
 }
