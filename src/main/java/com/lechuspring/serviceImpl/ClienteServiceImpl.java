@@ -37,4 +37,14 @@ public class ClienteServiceImpl implements ClienteService{
 		return response;
 	}
 
+	@Override
+	public Cliente getClienteByID(String id) throws Exception {
+	
+		return this.clienteDAO.findClienteById(id);
+		
+	}
+	
+	
+	
+
 }

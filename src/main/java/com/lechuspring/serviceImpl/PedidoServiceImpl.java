@@ -30,45 +30,27 @@ public class PedidoServiceImpl implements PedidoService{
 	@Autowired 
 	private ProductoDAO productoDAO;
 	
-	public void guardarPedido() {
+	public void guardarPedido(Cliente cliente, List<ProductoPedido> productos)  throws Exception{
 		
 		List<Producto> listProducto = productoDAO.findAll();
 		Producto product = listProducto.get(0);
-		
-		Cliente cliente = new Cliente();
-		cliente.setNombre("Alejandro");
-		cliente.setId("A1");
 
 		Estado estado = new Estado();
 		estado.setNombre("En proceso");
 		estado.setId(1);
 
-		
 		Pedido pedido = new Pedido();
 		pedido.setCliente(cliente);
 		pedido.setImporte(0.0);
-		pedido.setEstao(estado);
-		
-		ProductoPedido productoPedido1 = new ProductoPedido();
-		ProductoPedido productoPedido2 = new ProductoPedido();
-		ComposicionPK composicionPK1 = new ComposicionPK();
-		ComposicionPK composicionPK2 = new ComposicionPK();
+		pedido.setEstado(estado);
 		
 		Set<ProductoPedido> lista = new HashSet<ProductoPedido>();
 		
-		composicionPK1.setPedido(pedido);
-		composicionPK1.setProducto(listProducto.get(0));
-		productoPedido1.setPk(composicionPK1);
-		productoPedido1.setCantidad(1);
-		
-		
-		composicionPK2.setPedido(pedido);
-		composicionPK2.setProducto(listProducto.get(1));
-		productoPedido2.setPk(composicionPK2);
-		productoPedido2.setCantidad(2);
-	
-		lista.add(productoPedido1);
-		lista.add(productoPedido2);
+		for(ProductoPedido producto : productos){
+			
+			producto.getPk().setPedido(pedido);
+			lista.add(producto);
+		}
 		
 		pedido.setListaProductos(lista);
 		

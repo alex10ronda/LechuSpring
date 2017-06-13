@@ -30,4 +30,10 @@ public class ProductoServiceImpl implements ProductoService {
 		return productoDAO.findAllBebida();
 	}
 
+	
+	public Producto getProductoByID(int id) throws Exception {
+		
+		return this.productoDAO.findProductoById(id);
+	}
+
 }

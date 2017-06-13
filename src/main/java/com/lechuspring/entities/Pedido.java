@@ -36,7 +36,7 @@ public class Pedido {
 	
 	@OneToOne
 	@JoinColumn(name="ST_PEDIDO")
-	private Estado estao;
+	private Estado estado;
 	
 	@Column(name="IMPORTE")
 	private Double importe;
@@ -63,12 +63,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public Estado getEstao() {
-		return estao;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setEstao(Estado estao) {
-		this.estao = estao;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	public Double getImporte() {

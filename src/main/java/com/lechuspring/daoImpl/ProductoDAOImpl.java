@@ -29,4 +29,10 @@ public class ProductoDAOImpl implements ProductoDAO{
 		return this.sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 
+	
+	public Producto findProductoById(int id) throws Exception {
+		return (Producto) this.sessionFactory.getCurrentSession().get(Producto.class, id);
+		
+	}
+
 }
