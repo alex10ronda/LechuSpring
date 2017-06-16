@@ -8,7 +8,7 @@ import com.lechuspring.entities.ProductoPedido;
 
 public interface PedidoService {
 
-	public void guardarPedido(Cliente cliente, List<ProductoPedido> productos) throws Exception;
+	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio) throws Exception;
 	
 	public List<Pedido> getAll();
 }

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lechuspring.dao.ClienteDAO;
 import com.lechuspring.dao.PedidoDAO;
 import com.lechuspring.dao.ProductoDAO;
 import com.lechuspring.entities.Cliente;
@@ -30,7 +31,10 @@ public class PedidoServiceImpl implements PedidoService{
 	@Autowired 
 	private ProductoDAO productoDAO;
 	
-	public void guardarPedido(Cliente cliente, List<ProductoPedido> productos)  throws Exception{
+	@Autowired
+	private ClienteDAO clienteDAO;
+	
+	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio)  throws Exception{
 		
 		List<Producto> listProducto = productoDAO.findAll();
 		Producto product = listProducto.get(0);
@@ -41,7 +45,7 @@ public class PedidoServiceImpl implements PedidoService{
 
 		Pedido pedido = new Pedido();
 		pedido.setCliente(cliente);
-		pedido.setImporte(0.0);
+		pedido.setImporte(precio);
 		pedido.setEstado(estado);
 		
 		Set<ProductoPedido> lista = new HashSet<ProductoPedido>();
@@ -55,6 +59,13 @@ public class PedidoServiceImpl implements PedidoService{
 		pedido.setListaProductos(lista);
 		
 		this.pedidoDAO.save(pedido);
+		
+		Double importeActual = cliente.getImporteTotal();
+		Double nuevoImporte = importeActual + precio;
+		cliente.setImporteTotal(nuevoImporte);
+		this.clienteDAO.save(cliente);
+		
+		return nuevoImporte;
 		
 	}
 	

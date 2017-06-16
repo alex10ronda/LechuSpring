@@ -1,6 +1,5 @@
 package com.lechuspring.controller;
 
-import java.net.Authenticator.RequestorType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +40,16 @@ public class PedidoController {
 	@RequestMapping(value="/new", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String newPedido(@RequestBody String pedidoStr){
 		
+		JSONObject response = null;
 		try {
+			response = new JSONObject();
 			JSONObject pedidoJSON = new JSONObject(pedidoStr);
 			Cliente cliente = clienteService.getClienteByID(pedidoJSON.getString("userId"));
 			JSONArray arrayProductos = pedidoJSON.getJSONArray("pedido");
 			ProductoPedido productoPedido = new ProductoPedido();
 			ComposicionPK compPK = new ComposicionPK();
 			List<ProductoPedido> listaProductos = new ArrayList<>();
+			Double precio = 0.0;
 			
 			for(int i=0; i< arrayProductos.length(); i++){
 				JSONObject productoJSON = arrayProductos.getJSONObject(i);
@@ -57,22 +59,31 @@ public class PedidoController {
 				productoPedido.setCantidad(productoJSON.getInt("cant"));
 				productoPedido.setPk(compPK);
 				
+				precio = precio + (productoPedido.getPk().getProducto().getPrecio() * productoPedido.getCantidad());
 				listaProductos.add(productoPedido);
 				
 				productoPedido = new ProductoPedido();
 				compPK = new ComposicionPK();
 			}
 			
-			pedidoService.guardarPedido(cliente, listaProductos);
-			System.out.println(listaProductos);
+			Double importe = pedidoService.guardarPedido(cliente, listaProductos, precio);
+			
+			response.put("isOK", true);
+			response.put("importe", importe);
+			
 			
 		} catch (Exception e) {
 			
-			
+			try {
+				response.put("isOK", false);
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 		
-		return null;
+		return response.toString();
 	}
 	
 }
