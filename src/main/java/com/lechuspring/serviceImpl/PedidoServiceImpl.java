@@ -48,7 +48,7 @@ public class PedidoServiceImpl implements PedidoService{
 		pedido.setImporte(precio);
 		pedido.setEstado(estado);
 		
-		Set<ProductoPedido> lista = new HashSet<ProductoPedido>();
+		List<ProductoPedido> lista = new ArrayList<ProductoPedido>();
 		
 		for(ProductoPedido producto : productos){
 			
@@ -71,6 +71,12 @@ public class PedidoServiceImpl implements PedidoService{
 	
 	public List<Pedido> getAll(){
 		return this.pedidoDAO.getAllPedido();
+		
+	}
+
+	@Override
+	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception {
+		 return this.pedidoDAO.getAllPedidosByUser(cliente);
 		
 	}
 

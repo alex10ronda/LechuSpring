@@ -2,6 +2,7 @@ package com.lechuspring.dao;
 
 import java.util.List;
 
+import com.lechuspring.entities.Cliente;
 import com.lechuspring.entities.Pedido;
 
 public interface PedidoDAO {
@@ -9,4 +10,6 @@ public interface PedidoDAO {
 	public void save(Pedido pedido);
 	
 	public List<Pedido> getAllPedido();
+	
+	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception;
 }

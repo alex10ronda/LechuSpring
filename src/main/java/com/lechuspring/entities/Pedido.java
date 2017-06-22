@@ -1,5 +1,6 @@
 package com.lechuspring.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,8 +45,8 @@ public class Pedido {
 	
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="pk.pedido", cascade=CascadeType.ALL)
-	private Set<ProductoPedido> listaProductos = new HashSet<ProductoPedido>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="pk.pedido", cascade=CascadeType.ALL)
+	private List<ProductoPedido> listaProductos = new ArrayList<ProductoPedido>();
 
 	public int getId() {
 		return Id;
@@ -80,11 +81,11 @@ public class Pedido {
 	}
 
 	@JsonIgnore
-	public Set<ProductoPedido> getListaProductos() {
+	public List<ProductoPedido> getListaProductos() {
 		return listaProductos;
 	}
 
-	public void setListaProductos(Set<ProductoPedido> listaProductos) {
+	public void setListaProductos(List<ProductoPedido> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
 	

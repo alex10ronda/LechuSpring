@@ -11,4 +11,6 @@ public interface PedidoService {
 	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio) throws Exception;
 	
 	public List<Pedido> getAll();
+	
+	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception;
 }
