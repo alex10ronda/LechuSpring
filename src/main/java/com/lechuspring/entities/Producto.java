@@ -98,7 +98,7 @@ public class Producto {
 		this.tpCarta = tpCarta;
 	}
 
-	@JsonIgnore
+	
 	public String getTpProducto() {
 		return tpProducto;
 	}
