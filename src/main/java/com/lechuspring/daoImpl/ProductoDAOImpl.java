@@ -35,4 +35,13 @@ public class ProductoDAOImpl implements ProductoDAO{
 		
 	}
 
+
+	public List<Producto> findAllComidaByType(int type) throws Exception {
+		
+		String hql = "FROM Producto p WHERE p.tpProducto = 'Comida' AND tpCarta >= :type ";
+		List<Producto> result =  this.sessionFactory.getCurrentSession().createQuery(hql).setParameter("type", type).list();
+		
+		return result ;
+	}
+
 }

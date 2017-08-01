@@ -13,4 +13,6 @@ public interface ProductoService {
 	public List<Producto> getAllDrinks();
 	
 	public Producto getProductoByID(int id) throws Exception;
+	
+	public List<Producto> getAllFoodByType() throws Exception;
 }

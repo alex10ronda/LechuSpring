@@ -13,4 +13,6 @@ public interface ProductoDAO {
 	public List<Producto> findAllBebida();
 	
 	public Producto findProductoById(int id) throws Exception;
+	
+	public List<Producto> findAllComidaByType(int type) throws Exception;
 }

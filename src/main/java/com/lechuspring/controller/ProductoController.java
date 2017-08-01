@@ -31,5 +31,15 @@ public class ProductoController {
 	public @ResponseBody List<Producto> getAllDrink(){
 		return productoService.getAllDrinks();
 	}
+	
+	@RequestMapping(value="/findAllFoodByCarta")
+	public @ResponseBody List<Producto> getAllFoodByType(){
+		try {
+			return productoService.getAllFoodByType();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
