@@ -59,6 +59,7 @@
     	<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<mvc:resources mapping="/resources/**" location="resources/"/>
 	
  
 </beans>

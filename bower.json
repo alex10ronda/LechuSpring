@@ -1,0 +1,14 @@
+{
+  "name": "lechuspring",
+  "homepage": "https://github.com/alex10ronda/LechuSpring",
+  "authors": [
+    "alex10ronda <alex10_ronda@hotmail.com>"
+  ],
+  "description": "Dependencias de la vista",
+  "main": "index.jsp",
+  "license": "MIT",
+  "dependencies": {
+  	"jquery": "*",
+  	"bootstrap": "*"
+  }
+}
