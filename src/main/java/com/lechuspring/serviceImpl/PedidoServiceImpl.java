@@ -1,9 +1,8 @@
 package com.lechuspring.serviceImpl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -14,10 +13,8 @@ import com.lechuspring.dao.ClienteDAO;
 import com.lechuspring.dao.PedidoDAO;
 import com.lechuspring.dao.ProductoDAO;
 import com.lechuspring.entities.Cliente;
-import com.lechuspring.entities.ComposicionPK;
 import com.lechuspring.entities.Estado;
 import com.lechuspring.entities.Pedido;
-import com.lechuspring.entities.Producto;
 import com.lechuspring.entities.ProductoPedido;
 import com.lechuspring.service.PedidoService;
 
@@ -34,10 +31,10 @@ public class PedidoServiceImpl implements PedidoService{
 	@Autowired
 	private ClienteDAO clienteDAO;
 	
-	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio)  throws Exception{
+	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio, Date fecha)  throws Exception{
 		
-		List<Producto> listProducto = productoDAO.findAll();
-		Producto product = listProducto.get(0);
+		/*List<Producto> listProducto = productoDAO.findAll();
+		Producto product = listProducto.get(0);*/
 
 		Estado estado = new Estado();
 		estado.setNombre("En proceso");
@@ -47,6 +44,7 @@ public class PedidoServiceImpl implements PedidoService{
 		pedido.setCliente(cliente);
 		pedido.setImporte(precio);
 		pedido.setEstado(estado);
+		pedido.setFecha(fecha);
 		
 		List<ProductoPedido> lista = new ArrayList<ProductoPedido>();
 		

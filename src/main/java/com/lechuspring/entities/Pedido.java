@@ -1,9 +1,8 @@
 package com.lechuspring.entities;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,6 +38,9 @@ public class Pedido {
 	
 	@Column(name="IMPORTE")
 	private Double importe;
+	
+	@Column(name="FECHA")
+	private Date fecha;
 	
 	
 	
@@ -88,6 +88,16 @@ public class Pedido {
 	public void setListaProductos(List<ProductoPedido> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	
+	
 	
 	
 }

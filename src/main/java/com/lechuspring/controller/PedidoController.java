@@ -1,6 +1,7 @@
 package com.lechuspring.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -66,7 +67,7 @@ public class PedidoController {
 				compPK = new ComposicionPK();
 			}
 			
-			Double importe = pedidoService.guardarPedido(cliente, listaProductos, precio);
+			Double importe = pedidoService.guardarPedido(cliente, listaProductos, precio, new Date());
 			
 			response.put("isOK", true);
 			response.put("importe", importe);
