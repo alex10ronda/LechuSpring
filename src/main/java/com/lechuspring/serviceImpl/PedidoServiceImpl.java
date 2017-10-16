@@ -32,9 +32,6 @@ public class PedidoServiceImpl implements PedidoService{
 	private ClienteDAO clienteDAO;
 	
 	public Double guardarPedido(Cliente cliente, List<ProductoPedido> productos, Double precio, Date fecha)  throws Exception{
-		
-		/*List<Producto> listProducto = productoDAO.findAll();
-		Producto product = listProducto.get(0);*/
 
 		Estado estado = new Estado();
 		estado.setNombre("En proceso");
@@ -73,8 +70,10 @@ public class PedidoServiceImpl implements PedidoService{
 	}
 
 	@Override
-	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception {
-		 return this.pedidoDAO.getAllPedidosByUser(cliente);
+	public List<Pedido> getAllPedidosByUser(String idCliente) throws Exception {
+		
+		Cliente cliente = this.clienteDAO.findClienteById(idCliente);
+		return this.pedidoDAO.getAllPedidosByUser(cliente);
 		
 	}
 

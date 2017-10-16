@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lechuspring.entities.Cliente;
 import com.lechuspring.entities.ComposicionPK;
+import com.lechuspring.entities.Pedido;
 import com.lechuspring.entities.Producto;
 import com.lechuspring.entities.ProductoPedido;
 import com.lechuspring.service.ClienteService;
@@ -85,6 +87,20 @@ public class PedidoController {
 		}
 		
 		return response.toString();
+	}
+	
+	
+	@RequestMapping(value="/getUltimos/{id}")
+	public @ResponseBody List<Pedido>  obtenerUltimosPedidos(@PathVariable(value="id") String idCliente){
+		
+		try {
+			return this.pedidoService.getAllPedidosByUser(idCliente);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 }

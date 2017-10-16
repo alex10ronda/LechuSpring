@@ -13,5 +13,5 @@ public interface PedidoService {
 	
 	public List<Pedido> getAll();
 	
-	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception;
+	public List<Pedido> getAllPedidosByUser(String idCliente) throws Exception;
 }
