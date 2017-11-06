@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Embeddable
 public class ComposicionPK implements Serializable{
 
@@ -14,6 +16,7 @@ public class ComposicionPK implements Serializable{
 	@ManyToOne
 	private Producto producto;
 
+	@JsonIgnore
 	public Pedido getPedido() {
 		return pedido;
 	}

@@ -91,10 +91,12 @@ public class PedidoController {
 	
 	
 	@RequestMapping(value="/getUltimos/{id}")
-	public @ResponseBody List<Pedido>  obtenerUltimosPedidos(@PathVariable(value="id") String idCliente){
+	public @ResponseBody String  obtenerUltimosPedidos(@PathVariable(value="id") String idCliente){
 		
 		try {
-			return this.pedidoService.getAllPedidosByUser(idCliente);
+			
+			JSONArray pedidos = this.pedidoService.getAllPedidosByUser(idCliente);
+			return pedidos.toString();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -22,6 +22,7 @@ public class ProductoPedido {
 	@Column(name="CANTIDAD")
 	private int cantidad;
 
+	
 	public ComposicionPK getPk() {
 		return pk;
 	}

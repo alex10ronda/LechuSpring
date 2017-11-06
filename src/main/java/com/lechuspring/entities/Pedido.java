@@ -44,7 +44,7 @@ public class Pedido {
 	
 	
 	
-	@JsonIgnore
+	//TODO: Cambiar a ALL si falla el guardar
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="pk.pedido", cascade=CascadeType.ALL)
 	private List<ProductoPedido> listaProductos = new ArrayList<ProductoPedido>();
 
@@ -56,6 +56,7 @@ public class Pedido {
 		Id = id;
 	}
 
+	@JsonIgnore
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -64,6 +65,7 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
+	@JsonIgnore
 	public Estado getEstado() {
 		return estado;
 	}
@@ -80,7 +82,7 @@ public class Pedido {
 		this.importe = importe;
 	}
 
-	@JsonIgnore
+	
 	public List<ProductoPedido> getListaProductos() {
 		return listaProductos;
 	}

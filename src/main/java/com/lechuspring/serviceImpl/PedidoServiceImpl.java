@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,11 +71,47 @@ public class PedidoServiceImpl implements PedidoService{
 		
 	}
 
+	
+	
 	@Override
-	public List<Pedido> getAllPedidosByUser(String idCliente) throws Exception {
+	public JSONArray getAllPedidosByUser(String idCliente) throws Exception {
 		
 		Cliente cliente = this.clienteDAO.findClienteById(idCliente);
-		return this.pedidoDAO.getAllPedidosByUser(cliente);
+		List<Pedido> pedidos =  this.pedidoDAO.getAllPedidosByUser(cliente);
+		
+		JSONArray listaPedidos = new JSONArray();
+		
+		//Se crea el objeto json Pedido
+		JSONObject pedido = null;
+		
+		for(Pedido p : pedidos){
+			
+			pedido = new JSONObject();
+			
+			//Se setea la fecha y el importe
+			pedido.put("fecha", p.getFecha());
+			pedido.put("importe", p.getImporte());
+			
+			//Se recorre la lista de productos del pedido y se van añadiendo al array detalle pedido
+			JSONArray detallePedido = new JSONArray();
+			for(int i=0; i<p.getListaProductos().size(); i++){
+				JSONObject producto = new JSONObject();
+				producto.put("producto", p.getListaProductos().get(i).getPk().getProducto().getNombre());
+				producto.put("cantidad", p.getListaProductos().get(i).getCantidad());
+				producto.put("precio", p.getListaProductos().get(i).getPk().getProducto().getPrecio());
+				detallePedido.put(producto);
+			}
+			
+			//Se añade esta lista de detalle al objeto pedido
+			pedido.put("detalle", detallePedido);
+			
+			//Se añade a la lista el json pedido creado
+			listaPedidos.put(pedido);
+		}
+		
+		
+		
+		return listaPedidos;
 		
 	}
 

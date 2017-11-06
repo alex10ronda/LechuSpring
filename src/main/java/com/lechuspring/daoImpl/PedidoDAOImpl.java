@@ -32,11 +32,15 @@ public class PedidoDAOImpl implements PedidoDAO{
 	
 	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception {
 		
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from Pedido where cliente = :cliente order by Fecha");
+		//Query query = this.sessionFactory.getCurrentSession().createQuery("Select pedido.Id, pedido.listaProductos  "
+			//	+ "from Pedido pedido where pedido.cliente = :cliente");
+		
+		//Query query = this.sessionFactory.getCurrentSession().createQuery("from Product");
+		
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Pedido pedido where pedido.cliente = :cliente");
+		//Query query = this.sessionFactory.getCurrentSession().createSQLQuery("SELECT PEDIDO.ID_PEDIDO, COMPOSICION_PEDIDO.CANTIDAD , PRODUCTO.NB_PRODUCTO FROM PEDIDO JOIN COMPOSICION_PEDIDO JOIN PRODUCTO WHERE PEDIDO.ID_PEDIDO = COMPOSICION_PEDIDO.ID_PEDIDO AND COMPOSICION_PEDIDO.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO and PEDIDO.ID_CLIENTE = :cliente");
 		query.setParameter("cliente", cliente);
 
-		//Pedido pedido = (Pedido) query.list().get(0);
-	
 		query.setMaxResults(10);
 		return query.list();
 	}
