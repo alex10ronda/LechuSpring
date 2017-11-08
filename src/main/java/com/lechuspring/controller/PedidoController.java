@@ -90,7 +90,7 @@ public class PedidoController {
 	}
 	
 	
-	@RequestMapping(value="/getUltimos/{id}")
+	@RequestMapping(value="/getUltimos/{id}", produces="application/json;charset=UTF-8")
 	public @ResponseBody String  obtenerUltimosPedidos(@PathVariable(value="id") String idCliente){
 		
 		try {
