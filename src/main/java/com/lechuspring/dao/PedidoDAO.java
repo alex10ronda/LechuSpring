@@ -11,5 +11,5 @@ public interface PedidoDAO {
 	
 	public List<Pedido> getAllPedido();
 	
-	public List<Pedido> getAllPedidosByUser(Cliente cliente) throws Exception;
+	public List<Pedido> getLastPedidosByUser(Cliente cliente) throws Exception;
 }
